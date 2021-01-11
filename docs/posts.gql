@@ -1,0 +1,115 @@
+# Write your query or mutation here
+query ListPosts {
+  listPosts {
+    id
+    title
+    content
+    featureImage
+    createdAt
+    updatedAt
+    author {
+      id
+      username
+    }
+  }
+}
+
+query GetPost {
+  getPost(id: "5ff9c5a4339db8271f19c13a") {
+    success
+    post {
+      id
+      title
+      content
+      createdAt
+      updatedAt
+    }
+  }
+}
+
+mutation CreatePost {
+  createPost(input: { title: "Michael Post", content: "Content1" }) {
+    success
+    post {
+      id
+      title
+      content
+      createdAt
+      author {
+        email
+        username
+      }
+    }
+  }
+}
+
+mutation UpdatePost {
+  updatePost(
+    id: "5ffb7f334fb37c054535bd3e"
+    input: { title: "Updated ID By other user", content: "content" }
+  ) {
+    success
+    post {
+      id
+      title
+      content
+      createdAt
+      updatedAt
+    }
+  }
+}
+query getUser {
+  info
+}
+mutation UploadeFile($file: Upload!) {
+  imageUploader(file: $file)
+}
+
+mutation DeletePost {
+  deletePost(id: "5ffb7f334fb37c054535bd3e") {
+    success
+    post {
+      id
+      title
+    }
+  }
+}
+
+mutation register {
+  registerUser(
+    input: {
+      username: "Chris"
+      email: "chris@gmail.com"
+      firstName: "Chris"
+      lastName: "Jackson"
+      password: "123"
+    }
+  ) {
+    user {
+      email
+      firstName
+      lastName
+    }
+    token
+    success
+  }
+}
+
+query authenticateUser {
+  authenticateUser(username: "mtyiska", password: "123") {
+    user {
+      email
+      firstName
+      lastName
+    }
+    token
+    success
+  }
+}
+
+query getauthUserProfile {
+  getAuthUserProfile {
+    email
+    firstName
+  }
+}
